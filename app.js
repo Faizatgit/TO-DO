@@ -113,16 +113,14 @@ app.post('/signup', async (req, res) => {
 
 
 app.post('/add',async(req,res)=>{
-  async (req, res) => {
-    try {
-      const { title, description, status } = req.body;
-      const newTask = new Task({ title, description, status });
-      await newTask.save();
-      res.redirect('/');
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Server Error');
-    }
+  try {
+    const { title, description, status } = req.body;
+    const newTask = new Task({ title, description, status });
+    await newTask.save();
+    res.redirect('/');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
   }
 });
 
@@ -147,7 +145,7 @@ app.post('/delete/:id',async(req,res)=>{
     console.error(err);
     res.status(500).send('Server Error');
   }
-})
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
