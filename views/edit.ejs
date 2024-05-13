@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Task</title>
+  <style>
+     body {
+      font-family: Arial, sans-serif;
+      background-color: #f6f6f6;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="text"], textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus, textarea:focus, select:focus {
+      border-color: #5cb85c;
+    }
+
+    button[type="submit"] {
+      background-color: #5cb85c;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #4cae4c;
+    }
+
+    a {
+      color: #333;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #5bc0de;
+    }
+  </style>
+</head>
+<body>
+  <h1>Edit Task</h1>
+  <form action="/edit/<%= task._id %>" method="POST">
+    <input type="text" name="title" placeholder="Title" value="<%= task.title %>" required><br>
+    <textarea name="description" placeholder="Description" required><%= task.description %></textarea><br>
+    <select name="status">
+      <option value="Todo" <%= task.status === 'Todo' ? 'selected' : '' %>>Todo</option>
+      <option value="In Progress" <%= task.status === 'In Progress' ? 'selected' : '' %>>In Progress</option>
+      <option value="Done" <%= task.status === 'Done' ? 'selected' : '' %>>Done</option>
+    </select><br>
+    <button type="submit">Update Task</button>
+  </form>
+  <a href="/">Back to Task List</a>
+</body>
+</html>
